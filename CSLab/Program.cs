@@ -6,16 +6,22 @@ return;
 void CircleCalc()
 {
     Console.WriteLine("Введите радиус окружности:");
-
-    var rad = float.Parse(Console.ReadLine() ?? "0");
-    while (rad == 0)
+    double? rad = null;
+    while (rad == null)
     {
-        Console.WriteLine("Введите радиус окружности:");
-        rad = float.Parse(Console.ReadLine() ?? "0");
+        try
+        {
+            Console.WriteLine("Введите x:");
+            rad = float.Parse(Console.ReadLine() ?? "0");
+        }
+        catch (Exception)
+        {
+            rad = null;
+        }
     }
 
-    Console.WriteLine($"Площадь крга = {Math.PI * double.Pow(rad, 2)}");
-    Console.WriteLine($"Площадь сферы = {4.0 / 3.0 * Math.PI * double.Pow(rad, 3)}");
+    Console.WriteLine($"Площадь крга = {Math.PI * Math.Pow((double)rad, 2)}");
+    Console.WriteLine($"Площадь сферы = {4.0 / 3.0 * Math.PI * Math.Pow((double)rad, 3)}");
 }
 
 void SwapVars()
@@ -32,12 +38,20 @@ void SwapVars()
 
 void CalculateNumber()
 {
-    Console.WriteLine("Введите трёхзначное число:");
-    var number = int.Parse(Console.ReadLine() ?? "0");
-    while (number is < 100 and > -100)
+    int? number = null;
+    while (number == null)
     {
-        Console.WriteLine("Введите трёхзначное число:");
-        number = int.Parse(Console.ReadLine() ?? "0");
+        try
+        {
+            Console.WriteLine("Введите трёхзначное число:");
+            number = int.Parse(Console.ReadLine() ?? "0");
+            if (number is < 100 and > -100)
+                throw new Exception();
+        }
+        catch (Exception)
+        {
+            number = null;
+        }
     }
 
     Console.WriteLine($"Сумма цифр числа: {number / 100 + number % 100 / 10 + number % 10}");
