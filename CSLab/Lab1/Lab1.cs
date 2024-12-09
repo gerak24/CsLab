@@ -1,8 +1,8 @@
 ﻿namespace CSLab.Lab1;
 
-public class Lab1Menu : Lab1Quests
+public abstract class Lab1Menu : Lab1Quests
 {
-    public void Menu()
+    public static void Menu()
     {
         Console.WriteLine("Лабораторная 1:");
         Console.WriteLine("Введите цифру от 1 до 7, для выбора задания.");

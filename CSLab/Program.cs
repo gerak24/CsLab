@@ -1,6 +1,7 @@
 ﻿using CSLab.Lab1;
 
 Main();
+return;
 
 void Main()
 {
@@ -13,7 +14,7 @@ void Main()
         switch (pointer)
         {
             case '1':
-                new Lab1Menu().Menu();
+                Lab1Menu.Menu();
                 break;
             case '2':
               //  new Lab2Menu().Menu();
