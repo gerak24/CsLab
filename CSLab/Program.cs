@@ -1,59 +1,37 @@
-﻿CircleCalc();
-SwapVars();
-CalculateNumber();
-return;
+﻿using CSLab.Lab1;
 
-void CircleCalc()
+Main();
+
+void Main()
 {
-    Console.WriteLine("Введите радиус окружности:");
-    double? rad = null;
-    while (rad == null)
+    Console.WriteLine("Здравствуйте вы в меню лабораторных, выберите лабораторную введя цифру 1-5.");
+    Console.WriteLine("Введите \"Q\" для выхода");
+    var pointer = Console.ReadKey().KeyChar;
+    while (true)
     {
-        try
+        Console.WriteLine();
+        switch (pointer)
         {
-            Console.WriteLine("Введите x:");
-            rad = float.Parse(Console.ReadLine() ?? "0");
+            case '1':
+                new Lab1Menu().Menu();
+                break;
+            case '2':
+              //  new Lab2Menu().Menu();
+                break;
+            case '3':
+              //  new Lab3Menu().Menu();
+                break;
+            case '4':
+              //  new Lab4Menu().Menu();
+                break;
+            case '5':
+               // new Lab5Menu().Menu();
+                break;
+            case 'Q':
+                return;
         }
-        catch (Exception)
-        {
-            rad = null;
-        }
+        Console.WriteLine("Для продолжения выберите лабораторную введя цифру 1-5.");
+        Console.WriteLine("Введите \"Q\" для выхода ");
+        pointer = Console.ReadKey().KeyChar;
     }
-
-    Console.WriteLine($"Площадь крга = {Math.PI * Math.Pow((double)rad, 2)}");
-    Console.WriteLine($"Площадь сферы = {4.0 / 3.0 * Math.PI * Math.Pow((double)rad, 3)}");
-}
-
-void SwapVars()
-{
-    Console.WriteLine("Введите значение первой переменной:");
-    var first = Console.ReadLine() ?? "0";
-    Console.WriteLine("Введите значение первой переменной:");
-    var second = Console.ReadLine() ?? "0";
-
-    Console.WriteLine($"Переменные:{first} - {second}");
-    (first, second) = (second, first);
-    Console.WriteLine($"Переменные:{first} - {second}");
-}
-
-void CalculateNumber()
-{
-    int? number = null;
-    while (number == null)
-    {
-        try
-        {
-            Console.WriteLine("Введите трёхзначное число:");
-            number = int.Parse(Console.ReadLine() ?? "0");
-            if (number is < 100 and > -100)
-                throw new Exception();
-        }
-        catch (Exception)
-        {
-            number = null;
-        }
-    }
-
-    Console.WriteLine($"Сумма цифр числа: {number / 100 + number % 100 / 10 + number % 10}");
-    Console.WriteLine($"Произведение цифр числа: {number / 100 * (number % 100 / 10) * (number % 10)}");
 }
