@@ -1,4 +1,5 @@
 ﻿using CSLab.Lab1;
+using CSLab.Lab2;
 
 Main();
 return;
@@ -14,10 +15,10 @@ void Main()
         switch (pointer)
         {
             case '1':
-                Lab1Menu.Menu();
+                Lab1.Menu();
                 break;
             case '2':
-              //  new Lab2Menu().Menu();
+                Lab2.Menu();
                 break;
             case '3':
               //  new Lab3Menu().Menu();
