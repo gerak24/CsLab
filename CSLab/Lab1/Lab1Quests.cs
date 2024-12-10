@@ -4,32 +4,23 @@ public class Lab1Quests
 {
     protected static void CircleCalc()
     {
-        Console.WriteLine("Введите радиус окружности:");
-        double? rad = null;
-        while (rad == null)
+        var success = false;
+        double rad = 0;
+        while (!success)
         {
-            try
-            {
-                Console.WriteLine("Введите x:");
-                rad = float.Parse(Console.ReadLine() ?? "0");
-            }
-
-
-            catch (Exception)
-            {
-                rad = null;
-            }
+            Console.WriteLine("Введите радиус окружности::");
+            success = double.TryParse(Console.ReadLine(), out rad);
         }
 
-        Console.WriteLine($"Площадь крга = {Math.PI * Math.Pow((double)rad, 2)}");
-        Console.WriteLine($"Площадь сферы = {4.0 / 3.0 * Math.PI * Math.Pow((double)rad, 3)}");
+        Console.WriteLine($"Площадь крга = {Math.PI * Math.Pow(rad, 2)}");
+        Console.WriteLine($"Площадь сферы = {4.0 / 3.0 * Math.PI * Math.Pow(rad, 3)}");
     }
 
     protected static void SwapVars()
     {
         Console.WriteLine("Введите значение первой переменной:");
         var first = Console.ReadLine() ?? "0";
-        Console.WriteLine("Введите значение первой переменной:");
+        Console.WriteLine("Введите значение второй переменной:");
         var second = Console.ReadLine() ?? "0";
 
         Console.WriteLine($"Переменные:{first} - {second}");
@@ -39,20 +30,14 @@ public class Lab1Quests
 
     protected static void CalculateNumber()
     {
-        int? number = null;
-        while (number == null)
+        var success = false;
+        var number = 0;
+        while (!success)
         {
-            try
-            {
-                Console.WriteLine("Введите трёхзначное число:");
-                number = int.Parse(Console.ReadLine() ?? "0");
-                if (number is < 100 and > -100)
-                    throw new Exception();
-            }
-            catch (Exception)
-            {
-                number = null;
-            }
+            Console.WriteLine("Введите трёхзначное число:");
+            success = int.TryParse(Console.ReadLine(), out number);
+            if (number is < 100 and > -100)
+                success = false;
         }
 
         Console.WriteLine($"Сумма цифр числа: {number / 100 + number % 100 / 10 + number % 10}");
@@ -61,20 +46,14 @@ public class Lab1Quests
 
     protected static void CalculateNumber(bool hardMode)
     {
-        int? number = null;
-        while (number == null)
+        var success = false;
+        var number = 0;
+        while (!success)
         {
-            try
-            {
-                Console.WriteLine("Введите четырёхзначное число:");
-                number = int.Parse(Console.ReadLine() ?? "0");
-                if (number is < 1000 and > -1000)
-                    throw new Exception();
-            }
-            catch (Exception)
-            {
-                number = null;
-            }
+            Console.WriteLine("Введите четырёхзначное число:");
+            success = int.TryParse(Console.ReadLine(), out number);
+            if (number is < 1000 and > -1000)
+                success = false;
         }
 
         Console.WriteLine($"Сумма цифр числа: {number / 1000 + number % 1000 / 100 + number % 100 / 10 + number % 10}");
@@ -84,23 +63,17 @@ public class Lab1Quests
 
     protected static void EasyFunc()
     {
-        double? x = null;
-        while (x == null)
+        var success = false;
+        double x = 0;
+        while (!success)
         {
-            try
-            {
-                Console.WriteLine("Введите x:");
-                x = double.Parse(Console.ReadLine() ?? "0");
-            }
-            catch (Exception)
-            {
-                x = null;
-            }
+            Console.WriteLine("Введите x:");
+            success = double.TryParse(Console.ReadLine(), out x);
         }
 
         Console.WriteLine($"y = sin(pi+3^√sin^2 * {x})");
 
-        var result = Math.Sin(Math.PI + Math.Cbrt(Math.Pow(Math.Sin((double)x), 2)));
+        var result = Math.Sin(Math.PI + Math.Cbrt(Math.Pow(Math.Sin(x), 2)));
         Console.WriteLine($"y = {Math.Round(result, 3)}");
         Console.WriteLine($"Целая часть: {Math.Truncate(result)} Дробная часть {result}");
     }
@@ -122,33 +95,17 @@ public class Lab1Quests
 
     protected static void MinMax()
     {
-        int? first = null, second = null;
-
-        while (first == null && second == null)
+        int first = 0, second = 0;
+        var success = false;
+        while (!success)
         {
-            if (first == null)
-                try
-                {
-                    Console.WriteLine("Введите значение первго числа:");
-                    first = int.Parse(Console.ReadLine() ?? "0");
-                }
-                catch (Exception)
-                {
-                    first = null;
-                }
-
-            if (second == null)
-                try
-                {
-                    Console.WriteLine("Введите значение второго числа:");
-                    second = int.Parse(Console.ReadLine() ?? "0");
-                }
-                catch (Exception)
-                {
-                    second = null;
-                }
+            Console.WriteLine("Введите значение первго числа:");
+            success = int.TryParse(Console.ReadLine(), out first);
+            if (!success) continue;
+            Console.WriteLine("Введите значение второго числа:");
+            success = int.TryParse(Console.ReadLine(), out second);
         }
-        
-        Console.WriteLine($"Наибольшее из чисел: {int.Max((int)first!,(int)second!)}");
+
+        Console.WriteLine($"Наибольшее из чисел: {int.Max(first, second)}");
     }
 }
