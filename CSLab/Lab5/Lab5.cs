@@ -1,8 +1,8 @@
 ﻿namespace CSLab.Lab5;
 
-public class Lab5Menu
+public abstract class Lab5
 {
-    public void Menu()
+    public static void Menu()
     {
         Console.Clear();
     }

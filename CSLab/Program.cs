@@ -1,5 +1,8 @@
 ﻿using CSLab.Lab1;
 using CSLab.Lab2;
+using CSLab.Lab3;
+using CSLab.Lab4;
+using CSLab.Lab5;
 
 Main();
 return;
@@ -21,17 +24,18 @@ void Main()
                 Lab2.Menu();
                 break;
             case '3':
-              //  new Lab3Menu().Menu();
+                Lab3.Menu();
                 break;
             case '4':
-              //  new Lab4Menu().Menu();
+                Lab4.Menu();
                 break;
             case '5':
-               // new Lab5Menu().Menu();
+                Lab5.Menu();
                 break;
             case 'Q':
                 return;
         }
+
         Console.WriteLine("Для продолжения выберите лабораторную введя цифру 1-5.");
         Console.WriteLine("Введите \"Q\" для выхода ");
         pointer = Console.ReadKey().KeyChar;
