@@ -60,6 +60,7 @@ public abstract class Lab2 : Lab2Quests
                     RandMath();
                     break;
                 case 'Q':
+                case 'q':
                     return;
             }
 

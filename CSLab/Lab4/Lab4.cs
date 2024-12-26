@@ -55,6 +55,7 @@ public abstract class Lab4 : Lab4Quests
                     LabFootball.Menu();
                     break;
                 case 'Q':
+                case 'q':
                     return;
             }
 

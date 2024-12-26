@@ -15,6 +15,8 @@ public abstract class LabFootball : LabFootballQuests
         Console.WriteLine("Футбольный менеджер:");
         Console.WriteLine("1 - Список игроков.");
         Console.WriteLine("2 - Добавить игрока.");
+        Console.WriteLine("3 - Количество игроков выбранного амплуа.");
+        Console.WriteLine("4 - Количество совершеннолетних игроков.");
         Console.WriteLine("Введите \"Q\" для выхода в меню лабораторной №4");
 
         var pointer = Console.ReadKey().KeyChar;
@@ -29,9 +31,17 @@ public abstract class LabFootball : LabFootballQuests
                 case '2':
                     _team.Add(EnterPlayer());
                     break;
+                case '3':
+                    _team.Add(EnterPlayer());
+                    break;
+                case '4':
+                    _team.Add(EnterPlayer());
+                    break;
                 case 'Q':
+                case 'q':
                     return;
             }
+
             Console.WriteLine("Для продолжения выберите задание введя цифру 1 или 2.");
             Console.WriteLine("Введите \"Q\" для выхода в главное меню");
             pointer = Console.ReadKey().KeyChar;

@@ -70,6 +70,7 @@ public abstract class Lab3 : Lab3Quests
                     MultyTable();
                     break;
                 case 'Q':
+                case 'q':
                     return;
             }
 

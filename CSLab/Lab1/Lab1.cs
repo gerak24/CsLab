@@ -42,6 +42,7 @@ public abstract class Lab1 : Lab1Quests
                     MinMax();
                     break;
                 case 'Q':
+                case 'q':
                     return;
             }
 
