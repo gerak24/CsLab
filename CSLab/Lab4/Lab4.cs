@@ -1,4 +1,6 @@
-﻿namespace CSLab.Lab4;
+﻿using CSLab.Lab4.Football;
+
+namespace CSLab.Lab4;
 
 public abstract class Lab4 : Lab4Quests
 {
@@ -25,30 +27,32 @@ public abstract class Lab4 : Lab4Quests
                     break;
                 case '1':
                     Console.WriteLine("Определить, является ли расположение чисел в массиве упорядоченным ");
+                    ArrSortedAnalyze(EnterArray(5));
                     break;
                 case '2':
-                    Console.WriteLine("Вычислить сумму и произведение чисел произвольного трехзначного числа.");
+                    Console.WriteLine("Сортировка массива");
+                    ArraySort(CreateRandArray(10, 0, 100));
                     break;
                 case '3':
-                    Console.WriteLine("Вычислить значение функции y=f(x).");
+                    Console.WriteLine("Поиск числа в массиве.");
+                    FindNumber(CreateRandArray(10, 0, 100));
                     break;
                 case '4':
-                    Console.WriteLine("Вычислить значение выражения.");
+                    Console.WriteLine(
+                        "Из массива A[20] вывести массив B[], отсортированный по убыванию, где все числа <= 888 (диапазон 0 -> 1000).");
+                    GetCustomArray(CreateRandArray(20, 0, 1000));
                     break;
                 case '5':
-                    Console.WriteLine("Найти сумму и произведение цифр четырехзначного числа.");
+                    Console.WriteLine("Коллекция из приветствия и трёх случайных чисел.");
+                    EasyCollection();
                     break;
                 case '6':
-                    Console.WriteLine("Вывести  наибольшее из целых чисел A и B.");
+                    Console.WriteLine("Коллекция из произвольных элементов.");
+                    HardCollection();
                     break;
                 case '7':
-                    Console.WriteLine("Вывести  наибольшее из целых чисел A и B.");
-                    break;
-                case '8':
-                    Console.WriteLine("Вывести  наибольшее из целых чисел A и B.");
-                    break;
-                case '9':
-                    Console.WriteLine("Вывести  наибольшее из целых чисел A и B.");
+                    Console.WriteLine("Программа для формирования футбольной команды.");
+                    LabFootball.Menu();
                     break;
                 case 'Q':
                     return;
