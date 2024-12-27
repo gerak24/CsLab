@@ -27,7 +27,9 @@ public class Lab1Quests
     {
         var number =
             SharedFunctions.EnterInt(hardMode ? "Введите четырёхзначное число:" : "Введите трёхзначное число:");
-        while (hardMode ? number is > 1000 or < -1000 : number is > 100 or < -100)
+        while (hardMode
+                   ? number is (< 1000 or > 9999) and (> -1000 or < -9999)
+                   : number is (< 100 or > 999) and (> -100 or < -999))
         {
             number = SharedFunctions.EnterInt(hardMode
                 ? "Введите четырёхзначное число:"

@@ -16,7 +16,7 @@ public abstract class Lab2 : Lab2Quests
             {
                 case '0':
                     Console.WriteLine("Определить, является ли введенное число четным.");
-                    Multiplicity(2);
+                    Console.WriteLine(Multiplicity(2) ? "Число кратно чётное" : "Число нечётное");
                     break;
                 case '1':
                     Console.WriteLine("Определить, является ли заданное число двузначным числом, оканчивающимся на 3.");
@@ -39,7 +39,10 @@ public abstract class Lab2 : Lab2Quests
                     CargoRaces();
                     break;
                 case '6':
-                    Console.WriteLine("Проверка на кратность 3.");
+                    Console.WriteLine("Проверка на кратность и окончания 3.");
+                    Console.WriteLine(Multiplicity(3, '3')
+                        ? "Число кратно 3 и оканчивается на 3"
+                        : "Число не кратно 3 или не оканчивается на 3");
                     Multiplicity(3);
                     break;
                 case '7':
@@ -52,7 +55,7 @@ public abstract class Lab2 : Lab2Quests
                     break;
                 case '9':
                     Console.WriteLine("Скидка по рейтингу покупателя.");
-                    Console.WriteLine($"Итого к оплате: { RateDiscount()}");
+                    Console.WriteLine($"Итого к оплате: {RateDiscount()}");
                     break;
                 case 'd':
                     Console.WriteLine("Проверка знания таблицы умножения.");
@@ -63,7 +66,7 @@ public abstract class Lab2 : Lab2Quests
                     return;
             }
 
-            Console.WriteLine("Для продолжения выберите задание введя цифру 1-7.");
+            Console.WriteLine("Для продолжения выберите задание введя цифру 1-9 или d.");
             Console.WriteLine("Введите \"Q\" для выхода в главное меню");
             pointer = Console.ReadKey().KeyChar;
         }

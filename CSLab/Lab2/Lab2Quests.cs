@@ -4,10 +4,18 @@ namespace CSLab.Lab2;
 
 public class Lab2Quests
 {
-    protected static void Multiplicity(int brief)
+    protected static bool Multiplicity(int brief)
     {
         var digits = SharedFunctions.EnterInt("Введите число:");
-        Console.WriteLine(digits % brief == 0 ? $"Число кратно {brief}" : $"Число не кратно {brief}");
+        return digits % brief == 0;
+    }
+
+    protected static bool Multiplicity(int brief, char endDigit)
+    {
+        var digits = SharedFunctions.EnterInt("Введите число:");
+        if (digits.ToString().Last() != endDigit)
+            return false;
+        return digits % brief == 0;
     }
 
     protected static void NumAnalyze()
@@ -26,7 +34,7 @@ public class Lab2Quests
         var sum = SharedFunctions.EnterInt("Введите сумму вклада:");
 
         var percent = sum < 100 ? 0.05 : sum < 200 ? 0.07 : 0.10;
-        Console.WriteLine($"Процент начисления: {percent * 100}");
+        Console.WriteLine($"Процент начисления: {Math.Round(percent * 100)}");
         Console.WriteLine($"Сумма начисления: {Math.Round(sum * percent)}");
         Console.WriteLine($"Итоговая сумма: {Math.Round(sum + sum * percent)}");
     }
@@ -81,13 +89,10 @@ public class Lab2Quests
 
         Console.WriteLine("В одну сторону выезжают 2 грузовика.");
         v1 = SharedFunctions.EnterInt("Первый выехал со скоростью:");
-        Console.Write("Через ");
         t1 = SharedFunctions.EnterInt("Через ");
-        Console.Write("Выехал второй грузовик со скоростью ");
         v2 = SharedFunctions.EnterInt("Выехал второй грузовик со скоростью: ");
-        Console.Write("И через ");
         t2 = SharedFunctions.EnterInt("И через ");
-        Console.WriteLine(v1 * t1 <= v2 * t2
+        Console.WriteLine(v1 * (t1 + t2) <= v2 * t2
             ? "Второй грузовик догонит первый"
             : "Второй грузовик не догонит первый");
     }
@@ -123,7 +128,7 @@ public class Lab2Quests
             _ => percent
         };
         var discount = Math.Round(sum * percent);
-        Console.WriteLine($"Процент скидки: {percent}");
+        Console.WriteLine($"Процент скидки: {percent * 100}");
         Console.WriteLine($"Сумма скидки: {discount}");
         return Math.Round(sum - discount);
     }
@@ -152,7 +157,7 @@ public class Lab2Quests
         Console.WriteLine($"Скидка за рейтинг покупателя - {ratedisc}");
         return Math.Round(result - ratedisc);
     }
-    
+
     protected static void RandMath()
     {
         var first = Random.Shared.Next(1, 9);
