@@ -33,6 +33,7 @@ void Main()
                 Lab5.Menu();
                 break;
             case 'Q':
+            case 'q':
                 return;
         }
 
