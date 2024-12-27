@@ -1,37 +1,18 @@
-﻿namespace CSLab.Lab4;
+﻿using CSLab.Shared;
+
+namespace CSLab.Lab4;
 
 public class Lab4Quests
 {
-    protected static int EnterNum(string text)
-    {
-        var success = false;
-        var num = 0;
-        while (!success)
-        {
-            Console.WriteLine(text);
-            success = int.TryParse(Console.ReadLine(), out num);
-        }
-
-        return num;
-    }
-
     protected static int[] EnterArray(int length)
     {
         var array = new int[length];
         for (var i = 0; i < array.Length; i++)
         {
-            array[i] = EnterNum($"Введите элемент массива № {i + 1}");
+            array[i] = SharedFunctions.EnterInt($"Введите элемент массива № {i + 1}");
         }
 
         return array;
-    }
-
-    protected static void PrintArray(IEnumerable<int> array)
-    {
-        Console.WriteLine("Массив:");
-        foreach (var i in array)
-            Console.Write($"{i} ");
-        Console.WriteLine();
     }
 
     protected static int[] CreateRandArray(int length, int from, int to)
@@ -107,7 +88,7 @@ public class Lab4Quests
 
     protected static void ArraySort(int[] array)
     {
-        PrintArray(array);
+        SharedFunctions.PrintArray(array, "Исходный массив: ");
 
         var pointer = '\0';
         while (pointer != 'y' && pointer != 'n')
@@ -125,13 +106,13 @@ public class Lab4Quests
         };
 
         Console.WriteLine(byMax ? "Массив по возрастанию:" : "Массив по убыванию:");
-        PrintArray(byMax ? array.OrderDescending().Reverse() : array.OrderDescending());
+        SharedFunctions.PrintArray(byMax ? array.OrderDescending().Reverse() : array.OrderDescending());
     }
 
     protected static void FindNumber(int[] array)
     {
-        PrintArray(array);
-        var num = EnterNum("Введите искомое число");
+        SharedFunctions.PrintArray(array, "Исходный массив: ");
+        var num = SharedFunctions.EnterInt("Введите искомое число");
 
         var index = Array.FindIndex(array, i => num == i);
         Console.WriteLine(index >= 0
@@ -141,9 +122,9 @@ public class Lab4Quests
 
     protected static void GetCustomArray(int[] array)
     {
-        PrintArray(array);
+        SharedFunctions.PrintArray(array, "Исходный массив: ");
         var customArray = array.Where(x => x <= 888);
-        PrintArray(customArray.OrderDescending());
+        SharedFunctions.PrintArray(customArray.OrderDescending(), "Отфильтрованный массив: ");
     }
 
     protected static void EasyCollection()
@@ -153,28 +134,21 @@ public class Lab4Quests
         collection.Add(Console.ReadLine() ?? "");
         for (var i = 0; i < 3; i++)
             collection.Add(new Random().Next(0, 100));
-        Console.WriteLine("Коллекция: ");
-        foreach (var item in collection)
-            Console.WriteLine(item);
+        SharedFunctions.PrintArray(collection, "Коллекция: ", true);
     }
 
     protected static void HardCollection()
     {
         var collection = new List<object>();
-        var itemCount = EnterNum("Введите количество элементов коллекции:");
+        var itemCount = SharedFunctions.EnterInt("Введите количество элементов коллекции:");
         Console.WriteLine("Введите элементы: ");
         for (var i = 0; i < itemCount; i++)
             collection.Add(Console.ReadLine() ?? "");
-        Console.WriteLine("Коллекция: ");
-        var numCount = 0;
-        foreach (var item in collection)
-        {
-            numCount = double.TryParse(item.ToString(), out _) ? numCount + 1 : numCount;
-            Console.WriteLine(item);
-        }
+        SharedFunctions.PrintArray(collection, "Коллекция: ", true);
+        var numCount = collection.Aggregate(0,
+            (current, item) => double.TryParse(item.ToString(), out _) ? current + 1 : current);
 
         Console.WriteLine($"Количество числовых элементов = {numCount}");
         Console.WriteLine($"Количество нечисловых элементов = {itemCount - numCount}");
     }
-    
 }

@@ -1,17 +1,12 @@
-﻿namespace CSLab.Lab1;
+﻿using CSLab.Shared;
+
+namespace CSLab.Lab1;
 
 public class Lab1Quests
 {
     protected static void CircleCalc()
     {
-        var success = false;
-        double rad = 0;
-        while (!success)
-        {
-            Console.WriteLine("Введите радиус окружности::");
-            success = double.TryParse(Console.ReadLine(), out rad);
-        }
-
+        var rad = SharedFunctions.EnterDouble("Введите радиус окружности:");
         Console.WriteLine($"Площадь крга = {Math.PI * Math.Pow(rad, 2)}");
         Console.WriteLine($"Площадь сферы = {4.0 / 3.0 * Math.PI * Math.Pow(rad, 3)}");
     }
@@ -28,48 +23,30 @@ public class Lab1Quests
         Console.WriteLine($"Переменные:{first} - {second}");
     }
 
-    protected static void CalculateNumber()
-    {
-        var success = false;
-        var number = 0;
-        while (!success)
-        {
-            Console.WriteLine("Введите трёхзначное число:");
-            success = int.TryParse(Console.ReadLine(), out number);
-            if (number is < 100 and > -100)
-                success = false;
-        }
-
-        Console.WriteLine($"Сумма цифр числа: {number / 100 + number % 100 / 10 + number % 10}");
-        Console.WriteLine($"Произведение цифр числа: {number / 100 * (number % 100 / 10) * (number % 10)}");
-    }
-
     protected static void CalculateNumber(bool hardMode)
     {
-        var success = false;
-        var number = 0;
-        while (!success)
+        var number =
+            SharedFunctions.EnterInt(hardMode ? "Введите четырёхзначное число:" : "Введите трёхзначное число:");
+        while (hardMode ? number is > 1000 or < -1000 : number is > 100 or < -100)
         {
-            Console.WriteLine("Введите четырёхзначное число:");
-            success = int.TryParse(Console.ReadLine(), out number);
-            if (number is < 1000 and > -1000)
-                success = false;
+            number = SharedFunctions.EnterInt(hardMode
+                ? "Введите четырёхзначное число:"
+                : "Введите трёхзначное число:");
         }
 
-        Console.WriteLine($"Сумма цифр числа: {number / 1000 + number % 1000 / 100 + number % 100 / 10 + number % 10}");
         Console.WriteLine(
-            $"Произведение цифр числа: {number / 1000 * (number % 1000 / 100) * (number % 100 / 10) * (number % 10)}");
+            $"Сумма цифр числа: {(
+                hardMode ? number / 1000 + number % 1000 / 100 + number % 100 / 10 + number % 10
+                    : number / 100 + number % 100 / 10 + number % 10)}");
+        Console.WriteLine(
+            $"Произведение цифр числа: {(
+                hardMode ? number / 1000 * (number % 1000 / 100) * (number % 100 / 10) * (number % 10)
+                    : number / 100 * (number % 100 / 10) * (number % 10))}");
     }
 
     protected static void EasyFunc()
     {
-        var success = false;
-        double x = 0;
-        while (!success)
-        {
-            Console.WriteLine("Введите x:");
-            success = double.TryParse(Console.ReadLine(), out x);
-        }
+        var x = SharedFunctions.EnterDouble("Введите x:");
 
         Console.WriteLine($"y = sin(pi+3^√sin^2 * {x})");
 
@@ -95,16 +72,8 @@ public class Lab1Quests
 
     protected static void MinMax()
     {
-        int first = 0, second = 0;
-        var success = false;
-        while (!success)
-        {
-            Console.WriteLine("Введите значение первго числа:");
-            success = int.TryParse(Console.ReadLine(), out first);
-            if (!success) continue;
-            Console.WriteLine("Введите значение второго числа:");
-            success = int.TryParse(Console.ReadLine(), out second);
-        }
+        var first = SharedFunctions.EnterInt("Введите  значение первого число:");
+        var second = SharedFunctions.EnterInt("Введите значение второго числа:");
 
         Console.WriteLine($"Наибольшее из чисел: {int.Max(first, second)}");
     }

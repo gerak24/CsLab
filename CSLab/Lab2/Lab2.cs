@@ -4,7 +4,7 @@ public abstract class Lab2 : Lab2Quests
 {
     public static void Menu()
     {
-        Console.WriteLine("Лабораторная 1:");
+        Console.WriteLine("Лабораторная 2:");
         Console.WriteLine(
             "Введите цифру от 0 до 9, для выбора задания. (d - для выполнение дополнительного общего задания)");
         Console.WriteLine("Введите \"Q\" для выхода в главное меню");
@@ -52,8 +52,7 @@ public abstract class Lab2 : Lab2Quests
                     break;
                 case '9':
                     Console.WriteLine("Скидка по рейтингу покупателя.");
-                    Console.WriteLine("Введите рейтинг покупателя:");
-                    Console.WriteLine($"Итого к оплате: {Discount(Console.ReadKey().KeyChar)}");
+                    Console.WriteLine($"Итого к оплате: { RateDiscount()}");
                     break;
                 case 'd':
                     Console.WriteLine("Проверка знания таблицы умножения.");

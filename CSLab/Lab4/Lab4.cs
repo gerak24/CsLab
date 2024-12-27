@@ -1,4 +1,4 @@
-﻿using CSLab.Lab4.Football;
+﻿using CSLab.Lab4.FootballService;
 
 namespace CSLab.Lab4;
 
@@ -52,7 +52,7 @@ public abstract class Lab4 : Lab4Quests
                     break;
                 case '7':
                     Console.WriteLine("Программа для формирования футбольной команды.");
-                    LabFootball.Menu();
+                    Football.Menu();
                     break;
                 case 'Q':
                 case 'q':

@@ -23,7 +23,7 @@ public abstract class Lab1 : Lab1Quests
                     break;
                 case '3':
                     Console.WriteLine("Вычислить сумму и произведение чисел произвольного трехзначного числа.");
-                    CalculateNumber();
+                    CalculateNumber(false);
                     break;
                 case '4':
                     Console.WriteLine("Вычислить значение функции y=f(x).");

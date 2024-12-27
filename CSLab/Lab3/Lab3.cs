@@ -1,4 +1,6 @@
-﻿namespace CSLab.Lab3;
+﻿using CSLab.Shared;
+
+namespace CSLab.Lab3;
 
 public abstract class Lab3 : Lab3Quests
 {
@@ -16,7 +18,7 @@ public abstract class Lab3 : Lab3Quests
             {
                 case '0':
                     Console.WriteLine("Вывод всех чётных чисел от 1 до 100, их количества и суммы.");
-                    results = MultiplicityAnalyze([1, 100], 2);
+                    results = MultiplicityAnalyze(1, 100, 2);
                     foreach (var result in results)
                         Console.Write($"{result} ");
                     Console.WriteLine($"Сумма чётных чисел = {results.Sum()}");
@@ -30,12 +32,13 @@ public abstract class Lab3 : Lab3Quests
                     break;
                 case '2':
                     Console.WriteLine("Вывести максимальное число, кратное 5, в заданном ряду.");
-                    Console.WriteLine(
-                        $"Максимальное число, кратное 5 = {MultiplicityAnalyze(EnterNums(), 5).Max()}");
+                    var max = MultiplicityAnalyze(SharedFunctions.EnterInt("Введите начало промежутка"),
+                        SharedFunctions.EnterInt("Введите конец промежутка"), 5).Max();
+                    Console.WriteLine($"Максимальное число, кратное 5 = {max}");
                     break;
                 case '3':
                     Console.WriteLine("Определить, является ли число простым");
-                    Console.WriteLine(EasyNum(EnterNum("Введите число: "))
+                    Console.WriteLine(EasyNum(SharedFunctions.EnterInt("Введите число: "))
                         ? "Число является простым"
                         : "Число не является простым");
                     break;
@@ -45,7 +48,7 @@ public abstract class Lab3 : Lab3Quests
                     break;
                 case '5':
                     Console.WriteLine("«Тренажер таблицы умножения»");
-                    MultyTrainer();
+                    MultiplyTrainer();
                     break;
                 case '6':
                     Console.WriteLine("«Все простые числа в диапазоне»");
@@ -55,9 +58,7 @@ public abstract class Lab3 : Lab3Quests
                     Console.WriteLine(
                         "Вывод всех чисел, оканчивающихся на 6 в заданном промежутке, их сумма и количество");
                     results = EndCharAnalyze('6');
-                    foreach (var result in results)
-                        Console.Write($"{result} ");
-                    Console.WriteLine();
+                    SharedFunctions.PrintArray(results);
                     Console.WriteLine($"Сумма = {results.Sum()}");
                     Console.WriteLine($"Количество = {results.Count}");
                     break;
@@ -67,7 +68,7 @@ public abstract class Lab3 : Lab3Quests
                     break;
                 case '9':
                     Console.WriteLine("Таблица умножения");
-                    MultyTable();
+                    MultiplyTable();
                     break;
                 case 'Q':
                 case 'q':

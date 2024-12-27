@@ -1,8 +1,9 @@
-﻿using CSLab.Lab4.Football.Entities;
+﻿using CSLab.Lab4.FootballService.Entities;
 
-namespace CSLab.Lab4.Football;
+namespace CSLab.Lab4.FootballService;
 
-public abstract class LabFootball : LabFootballQuests
+// ReSharper disable once InconsistentNaming
+internal abstract class Football : FootballQuests
 {
     private static List<Player> _team =
     [
@@ -32,18 +33,20 @@ public abstract class LabFootball : LabFootballQuests
                     _team.Add(EnterPlayer());
                     break;
                 case '3':
-                    _team.Add(EnterPlayer());
+                    AmpluaFilter(_team);
                     break;
                 case '4':
-                    _team.Add(EnterPlayer());
+                    Console.WriteLine("Совершеннолетние игроки:");
+                    TeamIndex(_team.Where(x => x.Age >= 18));
                     break;
                 case 'Q':
                 case 'q':
                     return;
             }
 
-            Console.WriteLine("Для продолжения выберите задание введя цифру 1 или 2.");
-            Console.WriteLine("Введите \"Q\" для выхода в главное меню");
+            Console.WriteLine(
+                "Чтобы продолжить выберите действие:\n 1 - Список игроков. \n 2 - Добавить игрока. \n 3 - Количество игроков выбранного амплуа. \n 4 - Количество совершеннолетних игроков.");
+            Console.WriteLine("Введите \"Q\" для выхода в меню лабораторной №4");
             pointer = Console.ReadKey().KeyChar;
         }
     }

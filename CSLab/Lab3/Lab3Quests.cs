@@ -1,44 +1,13 @@
-﻿namespace CSLab.Lab3;
+﻿using CSLab.Shared;
 
-public abstract class Lab3Quests
+namespace CSLab.Lab3;
+
+public class Lab3Quests
 {
-    protected static List<int> EnterNums()
-    {
-        var success = false;
-        int from = 0, to = 0;
-        while (!success)
-        {
-            Console.WriteLine("Введите начало промежутка");
-            success = int.TryParse(Console.ReadLine(), out from);
-            if (!success)
-                Console.WriteLine("Промежуток должен быть задан целым числом.");
-            Console.WriteLine("Введите конец промежутка");
-            success = int.TryParse(Console.ReadLine(), out to);
-            if (!success)
-                Console.WriteLine("Промежуток должен быть задан целым числом.");
-        }
-
-        return [from, to];
-    }
-
-    protected static int EnterNum(string text)
-    {
-        var success = false;
-        var num = 0;
-        while (!success)
-        {
-            Console.WriteLine(text);
-            success = int.TryParse(Console.ReadLine(), out num);
-        }
-
-        return num;
-    }
-
     protected static List<int> EndCharAnalyze(char ends)
     {
-        var nums = EnterNums();
-        var from = nums[0];
-        var to = nums[1];
+        var from = SharedFunctions.EnterInt("Введите начало промежутка");
+        var to = SharedFunctions.EnterInt("Введите конец промежутка");
         var results = new List<int>();
         for (var i = from; i <= to; i++)
         {
@@ -49,14 +18,12 @@ public abstract class Lab3Quests
         return results;
     }
 
-    protected static List<int> MultiplicityAnalyze(List<int> nums, int multyplier)
+    protected static List<int> MultiplicityAnalyze(int from, int to, int multiplicity)
     {
-        var from = nums[0];
-        var to = nums[1];
         List<int> results = [];
         for (var i = from; i <= to; i++)
         {
-            if (i % multyplier != 0) continue;
+            if (i % multiplicity != 0) continue;
             results.Add(i);
         }
 
@@ -77,13 +44,11 @@ public abstract class Lab3Quests
 
     protected static void EasyNums()
     {
-        var nums = EnterNums();
-        var from = nums[0];
-        var to = nums[1];
-        for (var i = from; i < to; i++)
-        {
-            if (EasyNum(i)) Console.Write($"{i} ");
-        }
+        var from = SharedFunctions.EnterInt("Введите начало промежутка");
+        var to = SharedFunctions.EnterInt("Введите конец промежутка");
+        for (var i = from; i <= to; i++)
+            if (EasyNum(i))
+                Console.Write($"{i} ");
 
         Console.WriteLine();
     }
@@ -93,11 +58,11 @@ public abstract class Lab3Quests
         while (true)
         {
             var num = Random.Shared.Next(0, 100);
-            var pointer = EnterNum("Введите число: ");
+            var pointer = SharedFunctions.EnterInt("Введите число: ");
             while (pointer != num)
             {
                 Console.WriteLine(pointer > num ? "Перелёт!" : "Недолёт!");
-                pointer = EnterNum("Введите число: ");
+                pointer = SharedFunctions.EnterInt("Введите число: ");
             }
 
             Console.WriteLine("Молодец! В точку!");
@@ -118,12 +83,10 @@ public abstract class Lab3Quests
                 case 'N' or 'n':
                     return;
             }
-
-            break;
         }
     }
 
-    protected static void MultyTrainer()
+    protected static void MultiplyTrainer()
     {
         int count = 0, right = 0;
         while (true)
@@ -131,7 +94,7 @@ public abstract class Lab3Quests
             var first = Random.Shared.Next(1, 9);
             var second = Random.Shared.Next(1, 9);
             Console.WriteLine($"{first}*{second} = ");
-            var num = EnterNum("Введите число: ");
+            var num = SharedFunctions.EnterInt("Введите число: ");
             count++;
             if (num == first * second)
             {
@@ -167,8 +130,8 @@ public abstract class Lab3Quests
 
     protected static void PercentCalc()
     {
-        double sum = EnterNum("Введите сумму вклада: ");
-        var months = EnterNum("Введите количество месяцев: ");
+        var sum = SharedFunctions.EnterDouble("Введите сумму вклада: ");
+        var months = SharedFunctions.EnterInt("Введите количество месяцев: ");
         for (var i = 0; i < months; i++)
         {
             sum += sum * 0.02;
@@ -177,7 +140,7 @@ public abstract class Lab3Quests
         Console.WriteLine($"Сумма на счету к концу срока: {sum}");
     }
 
-    protected static void MultyTable()
+    protected static void MultiplyTable()
     {
         for (var first = 1; first < 10; first++)
         {
@@ -185,6 +148,7 @@ public abstract class Lab3Quests
             {
                 Console.Write($"{first * second} ");
             }
+
             Console.WriteLine();
         }
     }
