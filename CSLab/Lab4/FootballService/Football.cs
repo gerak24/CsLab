@@ -37,6 +37,8 @@ internal abstract class Football : FootballQuests
                     break;
                 case '4':
                     Console.WriteLine("Совершеннолетние игроки:");
+                    Console.WriteLine(
+                        $"Количество совершеннолетних игроков = {_team.Count(player => player.Age >= 18)}");
                     TeamIndex(_team.Where(x => x.Age >= 18));
                     break;
                 case 'Q':

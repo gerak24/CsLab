@@ -36,7 +36,7 @@ internal abstract class FootballQuests
         return new Player(name, (Skill)amplua, age);
     }
 
-    protected static void AmpluaFilter(IEnumerable<Player> team)
+    protected static void AmpluaFilter(List<Player> team)
     {
         Skill? amplua = null;
         while (amplua == null)
@@ -52,7 +52,7 @@ internal abstract class FootballQuests
                 _ => null
             };
         }
-
+        Console.WriteLine($"Количесво игроков с выбранным амплуа = {team.Count(player => player.Amplua == amplua)}");
         TeamIndex(team.Where(player => player.Amplua == amplua));
     }
 }
