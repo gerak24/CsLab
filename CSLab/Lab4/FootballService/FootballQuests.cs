@@ -22,9 +22,8 @@ internal abstract class FootballQuests
         Skill? amplua = null;
         while (amplua == null)
         {
-            var ampluaNum = SharedFunctions.EnterInt("Введите амплуа игрока");
-            Console.WriteLine(
-                "1 => Вратарь,\n 2 => Защитник,\n 3 => Форвард");
+            var ampluaNum =
+                SharedFunctions.EnterInt("Введите амплуа игрока \n 1 => Вратарь,\n 2 => Защитник,\n 3 => Форвард");
             amplua = ampluaNum switch
             {
                 1 => Skill.Вратарь,

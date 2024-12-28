@@ -34,13 +34,17 @@ public static class SharedFunctions
     public static void PrintArray<T>(IEnumerable<T> array, string? description = null, bool lined = false)
     {
         if (description != null) WriteLine($"{description}:");
-        foreach (var i in array)
-            if (lined)
+        if (lined)
+            foreach (var i in array)
                 WriteLine($"{i}");
-            else
+        else
+        {
+            foreach (var i in array)
             {
-                Write($"{i}, ");
-                WriteLine();
+                Write($"{i} ");
             }
+
+            WriteLine();
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CSLab.Lab4.FootballService;
+using CSLab.Shared;
 
 namespace CSLab.Lab4;
 
@@ -19,10 +20,7 @@ public abstract class Lab4 : Lab4Quests
                 case '0':
                     Console.WriteLine("Массив 10 случайных натуральных чисел в диапазоне от 0 до 100");
                     var arr = CreateRandArray(10, 0, 100);
-                    Console.Write("Массив: ");
-                    foreach (var num in arr)
-                        Console.Write($"{num} ");
-                    Console.WriteLine();
+                    SharedFunctions.PrintArray(arr, "Массив: ");
                     ArrAnalyze(arr);
                     break;
                 case '1':
